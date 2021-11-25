@@ -7,11 +7,27 @@ import ChanelContainer from './components/ChanelContainer';
 import './App.css';
 import Auth from './components/Auth';
 
+const cookies = new Cookies();
+
 const apiKey = 'dw9thsfxkaws';
 
 const client = StreamChat.getInstance(apiKey);
 
-const authToken = false;
+const authToken = cookies.get('token');
+
+if (authToken) {
+  client.connectUser(
+    {
+      id: cookies.get('userId'),
+      name: cookies.get('username'),
+      fullName: cookies.get('fullName'),
+      image: cookies.get('avatarURL'),
+      hashedPassword: cookies.get('hashedPassword'),
+      phoneNumber: cookies.get('phoneNumber'),
+    },
+    authToken
+  );
+}
 
 function App() {
   if (!authToken) return <Auth />;
