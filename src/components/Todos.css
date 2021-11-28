@@ -1,0 +1,41 @@
+.todos-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.todos-heading {
+  padding: 18px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0px 1px 0px rgb(0 0 0 / 10%);
+}
+
+.todos-main {
+  flex-grow: 1;
+}
+.todos-input-container {
+  display: flex;
+  padding: 15px;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  border-top: 1px solid lightgray;
+}
+
+.todos-input {
+  padding: 6px;
+  width: 85%;
+  font-size: 18px;
+}
+.add-todo {
+  padding: 0px 35px;
+  font-size: 15px;
+  cursor: pointer;
+  background-color: #554fa6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+.add-todo:hover {
+  opacity: 0.9;
+}

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Channel, MessageTeam } from 'stream-chat-react';
 import ChannelInner from './ChannelInner';
 import CreateChannel from './CreateChannel';
+import Dropdown from './Dropdown';
 import EditChannel from './EditChannel';
+import TodosContainer from './TodosContainer';
 
 const ChannelContainer = ({
   isCreating,
@@ -11,6 +13,25 @@ const ChannelContainer = ({
   setIsEditing,
   createType,
 }) => {
+  const [show, setShow] = useState('chat');
+
+  const getAptComponent = () => {
+    if (show === 'chat') {
+      return (
+        <Channel
+          EmptyStateIndicator={EmptyState}
+          Message={(messageProps, i) => (
+            <MessageTeam key={i} {...messageProps} />
+          )}
+        >
+          <ChannelInner setIsEditing={setIsEditing} />
+        </Channel>
+      );
+    } else if (show === 'todos') {
+      return <TodosContainer />;
+    }
+  };
+
   if (isCreating) {
     return (
       <div className='channel__container'>
@@ -39,13 +60,15 @@ const ChannelContainer = ({
   );
 
   return (
-    <div className=' channel__container'>
-      <Channel
-        EmptyStateIndicator={EmptyState}
-        Message={(messageProps, i) => <MessageTeam key={i} {...messageProps} />}
-      >
-        <ChannelInner setIsEditing={setIsEditing} />
-      </Channel>
+    <div className='channel__container'>
+      <div className='dropdown__container'>
+        <Dropdown
+          options={['chat', 'todos', 'announcements']}
+          setSelected={setShow}
+          selected={show}
+        />
+      </div>
+      {getAptComponent()}
     </div>
   );
 };
