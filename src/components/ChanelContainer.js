@@ -17,16 +17,7 @@ const ChannelContainer = ({
 
   const getAptComponent = () => {
     if (show === 'chat') {
-      return (
-        <Channel
-          EmptyStateIndicator={EmptyState}
-          Message={(messageProps, i) => (
-            <MessageTeam key={i} {...messageProps} />
-          )}
-        >
-          <ChannelInner setIsEditing={setIsEditing} />
-        </Channel>
-      );
+      return <ChannelInner setIsEditing={setIsEditing} />;
     } else if (show === 'todos') {
       return <TodosContainer />;
     }
@@ -68,7 +59,12 @@ const ChannelContainer = ({
           selected={show}
         />
       </div>
-      {getAptComponent()}
+      <Channel
+        EmptyStateIndicator={EmptyState}
+        Message={(messageProps, i) => <MessageTeam key={i} {...messageProps} />}
+      >
+        {getAptComponent()}
+      </Channel>
     </div>
   );
 };

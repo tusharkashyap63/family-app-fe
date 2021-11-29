@@ -2,6 +2,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 .todos-heading {
   padding: 18px 20px;
@@ -12,6 +13,7 @@
 
 .todos-main {
   flex-grow: 1;
+  padding: 16px;
 }
 .todos-input-container {
   display: flex;
@@ -38,4 +40,26 @@
 }
 .add-todo:hover {
   opacity: 0.9;
+}
+.task {
+  font-size: 18px;
+  margin-bottom: 15px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.task > button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  border: none;
+  background-color: white;
+  font-size: 16px;
+}
+
+.line-through {
+  text-decoration: line-through;
 }

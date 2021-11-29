@@ -1,8 +1,8 @@
 import axios from 'axios';
 const apiUrl = 'http://localhost:5000/tasks';
 
-export function getTasks() {
-  return axios.get(apiUrl);
+export function getTasks(channelId) {
+  return axios.get(apiUrl + `/${channelId}`);
 }
 
 export function addTask(task) {

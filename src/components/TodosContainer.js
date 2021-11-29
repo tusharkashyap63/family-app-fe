@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BiTrash } from 'react-icons/bi';
 import './Todos.css';
 import {
   addTask,
@@ -6,21 +7,23 @@ import {
   updateTask,
   deleteTask,
 } from '../services/taskServices';
+import { useChannelStateContext } from 'stream-chat-react';
 
 export default function TodosContainer() {
+  const { channel } = useChannelStateContext();
   const [tasks, setTasks] = useState([]);
   const [currentTask, setCurrentTask] = useState('');
 
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await getTasks();
+        const { data } = await getTasks(channel.id);
         setTasks(data);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, []);
+  }, [channel.id]);
 
   const handleChange = (e) => {
     setCurrentTask(e.target.value);
@@ -29,7 +32,10 @@ export default function TodosContainer() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await addTask({ task: currentTask });
+      const { data } = await addTask({
+        task: currentTask,
+        channelId: channel.id,
+      });
       setTasks([...tasks, data]);
       setCurrentTask('');
     } catch (error) {
@@ -37,7 +43,7 @@ export default function TodosContainer() {
     }
   };
 
-  const handleupadte = async (taskId) => {
+  const handleUpdate = async (taskId) => {
     const originalTasks = [...tasks];
     try {
       const index = tasks.findIndex((task) => task._id === taskId);
@@ -62,8 +68,35 @@ export default function TodosContainer() {
   return (
     <div className='todos-container'>
       <div className='todos-heading'>To-dos</div>
-      <div className='todos-main'></div>
-      <form className='todos-input-container'>
+      <div className='todos-main'>
+        {tasks.length > 0 ? (
+          tasks.map((task) => (
+            <div className='task'>
+              <div>
+                <input
+                  id={task._id}
+                  name={task._id}
+                  type='checkbox'
+                  checked={task.completed}
+                  onChange={() => handleUpdate(task._id)}
+                />
+                <label
+                  htmlFor={task._id}
+                  className={task.completed ? 'line-through' : ''}
+                >
+                  {task.task}
+                </label>
+              </div>
+              <button onClick={() => handleDelete(task._id)}>
+                <BiTrash />
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>Add tasks to get started</p>
+        )}
+      </div>
+      <form className='todos-input-container' onSubmit={handleSubmit}>
         <input
           type='text'
           className='todos-input'

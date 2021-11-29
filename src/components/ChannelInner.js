@@ -54,6 +54,7 @@ const ChannelInner = ({ setIsEditing }) => {
 const TeamChannelHeader = ({ setIsEditing }) => {
   const { channel, watcher_count } = useChannelStateContext();
   const { client } = useChatContext();
+  console.log(channel);
 
   const MessagingHeader = () => {
     const members = Object.values(channel.state.members).filter(
