@@ -14,6 +14,10 @@
 .todos-main {
   flex-grow: 1;
   padding: 16px;
+  background-image: url('../assets/family4.svg');
+  background-repeat: no-repeat;
+  background-size: 42%;
+  background-position: 107% 110%;
 }
 .todos-input-container {
   display: flex;

@@ -4,6 +4,7 @@ import ChannelInner from './ChannelInner';
 import CreateChannel from './CreateChannel';
 import Dropdown from './Dropdown';
 import EditChannel from './EditChannel';
+import Games from './Games';
 import TodosContainer from './TodosContainer';
 
 const ChannelContainer = ({
@@ -20,6 +21,8 @@ const ChannelContainer = ({
       return <ChannelInner setIsEditing={setIsEditing} />;
     } else if (show === 'todos') {
       return <TodosContainer />;
+    } else if (show === 'games') {
+      return <Games />;
     }
   };
 
@@ -54,7 +57,7 @@ const ChannelContainer = ({
     <div className='channel__container'>
       <div className='dropdown__container'>
         <Dropdown
-          options={['chat', 'todos', 'announcements']}
+          options={['chat', 'todos', 'games']}
           setSelected={setShow}
           selected={show}
         />

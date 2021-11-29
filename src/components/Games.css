@@ -1,0 +1,38 @@
+.games-container {
+  padding: 20px;
+  border: 1px solid red;
+  flex-grow: 1;
+  background-image: url('../assets/family9.svg');
+  background-repeat: no-repeat;
+  background-size: 45%;
+  background-position: 107% 110%;
+}
+.game {
+  margin-bottom: 40px;
+}
+.game-title {
+  font-size: 18px;
+  margin: 0;
+}
+.flex-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.game-link {
+  text-decoration: none;
+  padding: 6px 12px;
+  background-color: #554fa6;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+}
+.game-description {
+  margin-top: 5px;
+}
+
+.game-link:hover {
+  opacity: 0.9;
+}
