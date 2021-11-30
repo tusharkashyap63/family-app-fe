@@ -17,7 +17,7 @@ const ChannelNameInput = ({ channelName = '', setChannelName }) => {
       <input
         value={channelName}
         onChange={handleChange}
-        placeholder='channel-name'
+        placeholder='family-name'
       />
       <p>Add Members</p>
     </div>
@@ -54,7 +54,7 @@ const CreateChannel = ({ createType, setIsCreating }) => {
       <div className='create-channel__header'>
         <p>
           {createType === 'team'
-            ? 'Create a New Channel'
+            ? 'Create a New Family'
             : 'Send a Direct Message'}
         </p>
         <CloseCreateChannel setIsCreating={setIsCreating} />
@@ -67,9 +67,7 @@ const CreateChannel = ({ createType, setIsCreating }) => {
       )}
       <UserList setSelectedUsers={setSelectedUsers} />
       <div className='create-channel__button-wrapper' onClick={createChannel}>
-        <p>
-          {createType === 'team' ? 'Create Channel' : 'Create Message Group'}
-        </p>
+        <p>{createType === 'team' ? 'Create Family' : 'Create DM'}</p>
       </div>
     </div>
   );

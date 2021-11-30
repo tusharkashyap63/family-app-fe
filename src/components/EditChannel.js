@@ -16,7 +16,7 @@ const ChannelNameInput = ({ channelName = '', setChannelName }) => {
       <input
         value={channelName}
         onChange={handleChange}
-        placeholder='channel-name'
+        placeholder='family-name'
       />
       <p>Add Members</p>
     </div>
@@ -52,7 +52,7 @@ export default function EditChannel({ setIsEditing }) {
   return (
     <div className='edit-channel__container'>
       <div className='edit-channel__header'>
-        <p>Edit Channel</p>
+        <p>Edit Family</p>
         <CloseCreateChannel setIsEditing={setIsEditing} />
       </div>
       <ChannelNameInput
